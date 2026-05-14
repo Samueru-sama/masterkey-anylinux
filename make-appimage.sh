@@ -9,7 +9,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=/usr/share/icons/hicolor/scalable/apps/com.gitlab.guillermop.MasterKey.svg
 export DESKTOP=/usr/share/applications/com.gitlab.guillermop.MasterKey.desktop
 export PATH_MAPPING='/usr/share/master-key:${SHARUN_DIR}/share/master-key'
-
+export DEPLOY_PYTHON=1
 
 # Deploy dependencies
 quick-sharun \

@@ -14,6 +14,7 @@ export PATH_MAPPING='/usr/share/master-key:${SHARUN_DIR}/share/master-key'
 # Deploy dependencies
 quick-sharun \
 	/usr/bin/master-key       \
+	/usr/share/master-key     \
 	/usr/lib/libpwquality.so* \
 	/usr/lib/libtcl8.6.so*    \
 	/usr/lib/libsqlcipher.so* \

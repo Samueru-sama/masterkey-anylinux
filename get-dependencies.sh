@@ -8,11 +8,10 @@ sudo pacman -Syy --noconfirm archlinux-keyring
 #Build
 sudo pacman -S --noconfirm --needed git base-devel meson blueprint-compiler
 #Needed
-sudo pacman -S --noconfirm --needed libadwaita python-gobject libpwquality sqlcipher tcl python-pip
+sudo pacman -S --noconfirm --needed libadwaita python-gobject libpwquality sqlcipher tcl python-pip python-pycryptodome python-zxcvbn
 #Check
-sudo pacman -S --noconfirm --needed appstream-glib desktop-file-utils 
-#Python Installs
-pip install --break-system-packages pycryptodome zxcvbn
+sudo pacman -S --noconfirm --needed appstream-glib desktop-file-utils
+
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
@@ -20,14 +19,13 @@ get-debloated-pkgs --add-common --prefer-nano
 
 echo "Installing masterkey from source packages..."
 echo "---------------------------------------------------------------"
-if [ -d "source" ]; then rm -rf source; fi
-git clone https://gitlab.com/guillermop/master-key.git source
-
-cd source
+git clone https://gitlab.com/guillermop/master-key.git ./master-key
+cd ./master-key
 meson setup build --prefix=/usr
 meson compile -C build
 sudo meson install -C build
-cd ..
+awk -F":|'" '/version:/{print $3; exit}' ./meson.build > ~/version
+
 
 # Comment this out if you need an AUR package
 #make-aur-package PACKAGENAME
